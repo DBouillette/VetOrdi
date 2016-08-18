@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>Constantes pour Fenetres</comment>
+		<entry key ="NomApplication">Centre Vet'Ordi</entry>
+		<entry key ="ResoX">1900</entry>
+		<entry key ="ResoY">1000</entry>
+</properties>
