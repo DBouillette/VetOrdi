@@ -16,10 +16,11 @@ public class Fenetre extends JFrame {
 	private JMenuBar menuPrincipal = null;
 	private JMenu fichier = null;
 	private JMenuItem menuQuitter = null;
-	private JMenuItem menuClients = null;
+	private JMenuItem menuClient = null;
 	private JMenuItem menuDevis = null;
 	private JMenuItem menuProduits = null;
 	private Controler controler;
+	public PanelFond desktopPane = null;
 	
   //-- Initialisation de la fenetre principale ---------------------------------------
 	public Fenetre(LectureFichierXml config, Controler controler){
@@ -28,7 +29,9 @@ public class Fenetre extends JFrame {
 		this.setSize(Integer.valueOf(config.LectureCleXMml("ResoX")), Integer.valueOf(config.LectureCleXMml("ResoY")));
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setContentPane(new PanelFond());
+		this.desktopPane = new PanelFond();
+		this.setContentPane(desktopPane);
+		
 		
 		//-- Création de la barre de menu principal ----------------------------------------
 		menuPrincipal = new JMenuBar();
@@ -37,37 +40,22 @@ public class Fenetre extends JFrame {
 		fichier = new JMenu("Fichier");
 		
 		//-- Création du bouton Clients du menu principal ---------------------------------
-		menuClients = new JMenuItem("Clients");
+		menuClient = new JMenuItem("Clients");
 		
 		//-- Ajout du Listenner sur le bouton Clients
-		menuClients.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e){
-				controler.initFenetreMenu(e.getActionCommand());
-			}
-		});
+		menuClient.addActionListener(new MenuActionListener());
 		
 		//-- Création du bouton Devis du menu principal ---------------------------------
 		menuDevis = new JMenuItem("Devis");
 		
 		//-- Ajout du Listenner sur le bouton Devis
-		menuDevis.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e){
-				controler.initFenetreMenu(e.getActionCommand());
-			}
-		});
+		menuDevis.addActionListener(new MenuActionListener());
 		
 		//-- Création du bouton Produits du menu principal ---------------------------------
 		menuProduits = new JMenuItem("Produits");
 		
 		//-- Ajout du Listenner sur le bouton Produits
-		menuProduits.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e){
-				controler.initFenetreMenu(e.getActionCommand());
-			}
-		});
+		menuProduits.addActionListener(new MenuActionListener());
 		
 		//-- Création du bouton Quitter du menu principal ----------------------------------
 		menuQuitter = new JMenuItem("Quitter");
@@ -81,7 +69,7 @@ public class Fenetre extends JFrame {
 		});
 				
 		//-- Ajout des boutons dans le menu Fichier ---------------------------------------
-		fichier.add(menuClients);
+		fichier.add(menuClient);
 		fichier.add(menuDevis);
 		fichier.add(menuProduits);
 		fichier.add(menuQuitter);
@@ -102,7 +90,15 @@ public class Fenetre extends JFrame {
 	
 	
 	
-	
+	 class MenuActionListener implements ActionListener{
+		@Override
+		
+		public void actionPerformed(ActionEvent e) {
+			controler.initFenetreMenu(e.getActionCommand(),desktopPane );
+			
+		}
+		
+	}
 	
 	
 	

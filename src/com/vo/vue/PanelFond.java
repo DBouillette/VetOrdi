@@ -4,10 +4,10 @@ import java.awt.Graphics;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
-import javax.swing.JPanel;
+import javax.swing.JDesktopPane;
 
 //Classe qui créée un JPanel servant d'image de fond à l'application
-public class PanelFond extends JPanel {
+public class PanelFond extends JDesktopPane {
 	
 	private Image image;
 	final ImageIcon imageIcon = new ImageIcon("img/background.jpg");
